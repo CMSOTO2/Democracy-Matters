@@ -1,0 +1,711 @@
+//Breakpoints
+@mixin breakpoint($class) {
+  @if $class==sm {
+    @media (max-width: 576px) {
+      @content;
+    }
+  } @else if $class==xs {
+    @media (max-width: 400px) {
+      @content;
+    }
+  } @else if $class==md {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $class==lg {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $class==xl {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if $class==xxl {
+    @media (max-width: 1600px) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint mixin supports: sm, md, lg, xxl";
+  }
+}
+
+//imports
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+// FONTS
+$raleway: "Raleway", sans-serif;
+$roboto: "Roboto", sans-serif;
+
+//Colors
+$white: #ffffff;
+$dark-blue: #0b0a26;
+$cloud-white: #f9f9f9;
+$dark-red: #590c30;
+$light-blue: #1b7ea6;
+$blue: #08325c;
+$black: #000000;
+
+%shadow {
+  -webkit-box-shadow: 0px 5px 10px -1px #000000;
+  box-shadow: 0px 5px 10px -1px #000000;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+//reset all browser styles
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+rem,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+rembed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  //font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  max-width: 100%;
+  scroll-behavior: smooth;
+  font-size: 25px;
+  @include breakpoint(xxl) {
+    font-size: 23px;
+  }
+  @include breakpoint(lg) {
+    font-size: 20px;
+  }
+  @include breakpoint(md) {
+    font-size: 18px;
+  }
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+    height: auto;
+    background: $white;
+  }
+
+  // FONT SIZES
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    font-family: $raleway;
+  }
+  a {
+    font-weight: 600;
+    font-family: $raleway;
+    color: $white;
+    font-size: 1.3rem;
+    text-decoration: none;
+  }
+  p,
+  span {
+    font-weight: 400;
+    font-family: $roboto;
+  }
+  h1 {
+    font-size: 4.48rem;
+  }
+  h2 {
+    font-size: 2.82rem;
+  }
+  h3 {
+    font-size: 2.17rem;
+  }
+  h4 {
+    font-size: 1.4rem;
+  }
+  h5 {
+    font-size: 1.087rem;
+  }
+  h6 {
+    font-size: 1.25rem;
+  }
+  li {
+    font-size: 1.5625rem;
+  }
+  p {
+    line-height: 1.25;
+    font-size: 1.087rem;
+  }
+
+  ul {
+    list-style: none;
+  }
+  //Globals
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container {
+    max-width: 94%;
+    width: 1600px;
+    margin: 0 auto;
+  }
+
+  // Bars under Title styles
+  .left-bar {
+    background-color: $dark-red;
+    height: 10px;
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .right-bar {
+    background-color: $dark-red;
+    height: 10px;
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-self: flex-end;
+  }
+  .right-bar-blue {
+    background-color: $blue;
+    width: 70%;
+  }
+  .left-bar-lightblue {
+    background-color: $light-blue;
+    width: 68%;
+  }
+  .right-bar-red {
+    width: 65%;
+  }
+  .left-bar-blue {
+    background-color: $blue;
+    width: 63%;
+  }
+  .right-bar-lightblue {
+    background-color: $light-blue;
+    width: 65%;
+  }
+
+  footer {
+    background-color: #121212;
+    padding-bottom: 30px;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      position: relative;
+      padding: 50px 0px 70px 0px;
+
+      @include breakpoint(xl) {
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+      }
+    }
+    .terms-policy {
+      position: absolute;
+      bottom: 0;
+
+      span {
+        color: white;
+      }
+      a {
+        font-size: 0.875rem;
+      }
+    }
+    .logo {
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .socials {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      align-self: start;
+      @include breakpoint(xl) {
+        align-self: center;
+      }
+    }
+
+    .btn-donate {
+      background-color: $light-blue;
+      padding: 7px 60px;
+    }
+    .last-column:last-child {
+      margin-top: 15px;
+    }
+    #email {
+      text-decoration: underline;
+    }
+    .sign-up {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+
+      @include breakpoint(xl) {
+        position: relative;
+      }
+
+      input {
+        width: 300px;
+        font-size: 1.3rem;
+        @include breakpoint(xs) {
+          width: 250px;
+        }
+      }
+    }
+    .sign-up__submit {
+      height: 45px;
+      width: 45px;
+      background-color: $light-blue;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
+    .sign-up__submit:hover {
+      background-color: $dark-blue;
+    }
+    .sign-up__submit::after {
+      content: url(./images/arrow.svg);
+    }
+  }
+
+  .two-column-advocates {
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      @include breakpoint(xl) {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+      }
+    }
+    .img-wrapper {
+      position: relative;
+      width: 650px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @include breakpoint(md) {
+        width: 90%;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .text-wrapper {
+      position: absolute;
+      color: white;
+      top: 50px;
+
+      width: 90%;
+
+      display: flex;
+      flex-direction: column;
+
+      @include breakpoint(sm) {
+      }
+
+      h3 {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      p {
+        font-weight: 700;
+      }
+    }
+    .btn {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 100px;
+      border: 2px solid $white;
+      width: 90%;
+      height: 75px;
+
+      @include breakpoint(md) {
+      }
+    }
+  }
+  .student-testimonials {
+    background-color: $dark-blue;
+    color: $white;
+    text-align: center;
+
+    .container {
+      position: relative;
+      padding: 75px;
+      display: flex;
+      justify-content: center;
+      @include breakpoint(lg) {
+        flex-direction: column;
+      }
+    }
+
+    .founder {
+      position: absolute;
+      width: 585px;
+      bottom: 0;
+      left: -40px;
+      object-fit: contain;
+      @include breakpoint(md) {
+        width: 100%;
+        left: 0;
+        // position: relative;
+        align-self: center;
+      }
+    }
+  }
+
+  .founder-section {
+    background-color: $dark-blue;
+    color: $white;
+    position: relative;
+    overflow: hidden;
+    p {
+      margin-bottom: 15px;
+    }
+    .slant {
+      width: 3900px;
+      height: 256px;
+      transform: rotate(-35deg);
+      position: absolute;
+      bottom: 0;
+      left: -1800px;
+      z-index: -1;
+      background-color: $dark-red;
+    }
+    .container {
+      padding-top: 70px;
+      padding-bottom: 100px;
+      z-index: 2;
+      position: relative;
+
+      h2 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    }
+    .img-quote {
+      margin-top: 60px;
+      margin-bottom: 30px;
+      display: flex;
+      position: relative;
+
+      @include breakpoint(md) {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+      }
+
+      img {
+        width: 295px;
+        object-fit: cover;
+
+        @include breakpoint(sm) {
+          width: 200px;
+        }
+      }
+      .founder-quote {
+        margin-left: 75px;
+        width: 70%;
+        align-self: center;
+        justify-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include breakpoint(sm) {
+          margin-left: 0;
+        }
+        img {
+          width: 87px;
+          margin-bottom: 30px;
+          @include breakpoint(sm) {
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
+  .two-column-staff {
+    background-color: $blue;
+    color: $white;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 70px;
+    position: relative;
+    overflow: hidden;
+    .title {
+      position: absolute;
+    }
+    .slant {
+      width: 8000px;
+      height: 600px;
+      transform: rotate(24deg);
+      position: absolute;
+      top: 700px;
+      left: -3000px;
+      z-index: -1;
+      background-color: $light-blue;
+    }
+    .gov-img {
+      position: absolute;
+      right: 0;
+      bottom: 50px;
+
+      @include breakpoint(lg) {
+        position: relative;
+        top: 50px;
+      }
+    }
+    p {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      z-index: 1;
+      position: relative;
+
+      @include breakpoint(lg) {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    .column-container {
+      margin-top: 50px;
+      width: 45%;
+
+      @include breakpoint(lg) {
+        width: 90%;
+      }
+      .staff-container {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 5px solid $white;
+
+        .job-title {
+          width: 45%;
+          margin: auto;
+        }
+        .staff-info {
+          width: 40%;
+        }
+        img {
+          width: 300px;
+          object-fit: contain;
+        }
+        a {
+          font-size: 1.087rem;
+        }
+      }
+    }
+  }
+  .single-column {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .title-bar-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+  }
+  .carousel {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .container {
+      text-align: center;
+
+      .title {
+        color: $dark-blue;
+        margin-bottom: 30px;
+      }
+      .student-quoted {
+        font-size: 1.74rem;
+        font-weight: bold;
+        padding-bottom: 50px;
+      }
+      .quote-container {
+        width: 83% !important;
+        margin: auto;
+
+        padding-bottom: 50px;
+        position: relative;
+      }
+      .quote-start {
+        position: absolute;
+        top: 50px;
+        left: -50px;
+        @include breakpoint(md) {
+          left: 0;
+          top: 20%;
+        }
+      }
+      .quote-end {
+        position: absolute;
+        bottom: 0;
+        right: -50px;
+        transform: rotate(180deg);
+
+        @include breakpoint(md) {
+          right: 0;
+          bottom: 5%;
+        }
+      }
+      .slick-dots {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+      }
+      .slick-dots li {
+        margin: 0 10px;
+        border-radius: 50%;
+      }
+      .slick-dots button {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border: none;
+        border-radius: 50%;
+        background-color: $blue;
+        content-visibility: hidden;
+      }
+      .slick-dots li.slick-active button {
+        background-color: $dark-red;
+      }
+    }
+  }
+}
